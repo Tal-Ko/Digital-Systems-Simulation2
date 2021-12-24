@@ -1,0 +1,8 @@
+# Ignore modelsim files
+work/
+vsim.wlf
+transcript
+*.mpf
+*.mti
+*.vstf
+wlft*
