@@ -27,6 +27,29 @@ main:   # Load data from memory
 #   mul		<PROD>, <FACTOR1>, <FACTOR2>
 #   and		<PROD>, <PROD>, t0
 
+        addi t1, x0, 2
+        addi t2, x0, 0
+        addi s8, x0, 0xff
+        addi s9, x0, 0
+        addi s10, x0, 8
+
+mult_loop:
+        beq t2, t1, finish
+
+        mul s9, t2, s10
+        sll s8, s8, s9
+
+        add t5, x0, t3
+        and t5, t5, s8
+
+        mul s11, t5, t4
+        and s11, s11, t0
+
+        add t6, t6, s11
+        addi t2, t2, 1
+
+        j mult_loop
+
 # End of your code
 ####################
 
