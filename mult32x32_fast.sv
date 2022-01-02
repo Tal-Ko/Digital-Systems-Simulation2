@@ -12,6 +12,38 @@ module mult32x32_fast (
 // Put your code here
 // ------------------
 
+logic a_sel, b_sel, upd_prod, clr_prod;
+logic a_msw_is_0, b_msw_is_0;
+logic [1:0] shift_sel;
+
+mult32x32_fast_fsm FSM_inst (
+    .clk(clk),
+    .reset(reset),
+    .start(start),
+    .a_msw_is_0(a_msw_is_0),
+    .b_msw_is_0(b_msw_is_0),
+    .busy(busy),
+    .a_sel(a_sel),
+    .b_sel(b_sel),
+    .shift_sel(shift_sel),
+    .upd_prod(upd_prod),
+    .clr_prod(clr_prod)
+);
+
+mult32x32_fast_arith arith_inst (
+    .clk(clk),
+    .reset(reset),
+    .a(a),
+    .b(b),
+    .a_sel(a_sel),
+    .b_sel(b_sel),
+    .shift_sel(shift_sel),
+    .upd_prod(upd_prod),
+    .clr_prod(clr_prod),
+    .a_msw_is_0(a_msw_is_0),
+    .b_msw_is_0(b_msw_is_0),
+    .product(product)
+);
 
 // End of your code
 
